@@ -1,0 +1,8 @@
+{{template "base" .}}
+
+
+{{define "show"}}
+<h2>Заказы</h2>
+<ul> {{range $key, $value := .}} <li><a href="/show/{{ $key }}">UID:  {{ $key }} </a></li></ul>
+{{end}}
+{{end}}
