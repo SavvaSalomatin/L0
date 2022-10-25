@@ -52,14 +52,14 @@ func main() {
 	)
 
 	jsondata := `{
-		"order_uid": "sdfg11fyughfgs111",
-		"track_number": "WBILMfghfghTESTTRACK",
+		"order_uid": "s",
+		"track_number": "WBILMfghfgdfgdfgdgfghTESTTRACK",
 		"entry": "WBIL",
 		"delivery": {
 		  "name": "Test Testov",
 		  "phone": "+9720000000",
 		  "zip": "2639809",
-		  "city": "Kiryat Mozkin HHH",
+		  "city": "Kiryat Mozkdfgdfgdfin HHH",
 		  "address": "Ploshad Mira 15",
 		  "region": "Kraidfgot",
 		  "email": "test@gmail.com"
@@ -88,7 +88,7 @@ func main() {
 			"total_price": 317,
 			"nm_id": 2389212,
 			"brand": "Vivienne Sabo",
-			"status": 202
+			"status": 10
 		  }
 		],
 		"locale": "en",

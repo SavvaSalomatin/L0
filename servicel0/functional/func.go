@@ -99,12 +99,18 @@ func datawork(m *stan.Msg, db *sql.DB) {
 
 func dataCacheSet(data *map[string]interface{}) (*[]byte, *string) {
 	uid := (*data)["order_uid"].(string)
+	_, found := config.C.Get(uid)
 	delete(*data, "order_uid")
 	foo, _ := json.Marshal(data)
 	order := config.Order{uid, foo}
-	config.C.Set(uid, order, cache.DefaultExpiration)
-	log.Println("Данные добавлены в кеш")
-	return &foo, &uid
+	if found {
+		log.Println("Данные с указанным order_uid уже находятся в системе")
+		return &foo, &uid
+	} else {
+		config.C.Set(uid, order, cache.DefaultExpiration)
+		log.Println("Данные добавлены в кеш")
+		return &foo, &uid
+	}
 }
 
 func addtodb(db *sql.DB, foo *[]byte, order_uidbuf *string) {
@@ -121,6 +127,7 @@ func addtodb(db *sql.DB, foo *[]byte, order_uidbuf *string) {
 	} else {
 		log.Println("Полученное сообщение успешно добавлено в БД")
 	}
+
 }
 
 func listen(sub *stan.Subscription, sc *stan.Conn) {
